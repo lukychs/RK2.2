@@ -1,4 +1,4 @@
-name: C++ CI
+name: Build and Test
 
 on:
   push:
@@ -13,23 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y cmake
     - name: Set up CMake
-      uses: jwlawson/actions-setup-cmake@v1
-
-    - name: Configure CMake
-      run: cmake -B build
-
+      uses: lukka/get-cmake@v2.3.0
+    - name: Configure
+      run: cmake .
     - name: Build
-      run: cmake --build build
-
+      run: cmake --build .
     - name: Run tests
-      run: ctest --output-on-failure --test-dir build
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: ClassicObserverExample
-        path: build/ClassicObserverExample
+      run: ctest --output-on-failure
