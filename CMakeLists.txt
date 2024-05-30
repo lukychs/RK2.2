@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Укажите все исходные файлы
 set(SOURCES
-    AdressObserver.cpp
-    AdressObserver.h
+    AddressObserver.cpp
+    AddressObserver.h
     G25_Classic_Observer.cpp
     Main.cpp
     NameObserver.cpp
