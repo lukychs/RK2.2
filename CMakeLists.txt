@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(ClassicObserverExample)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # Укажите все исходные файлы
 set(SOURCES
@@ -19,6 +19,10 @@ set(SOURCES
 
 add_executable(ClassicObserverExample ${SOURCES})
 
+set(TEST_FILES
+    tests.cpp
+)
+
 # GoogleTest configuration
 include(FetchContent)
 FetchContent_Declare(
@@ -26,10 +30,10 @@ FetchContent_Declare(
     URL https://github.com/google/googletest/archive/release-1.10.0.tar.gz
 )
 FetchContent_MakeAvailable(googletest)
+add_executanbles(RunTests ${TEST_FILES})
+target_link_libraries(RunTests gtest gtest_main)
+target_link_libraries(RunTests ClassicObserverExample)
 
+# Включение тестов
 enable_testing()
-
-# Добавьте тесты для каждого примера
-add_executable(runTests tests.cpp)
-target_link_libraries(runTests gtest gtest_main)
-add_test(NAME runTests COMMAND runTests)
+add_test(AllTests RunTests)
