@@ -18,7 +18,7 @@ add_executable(ClassicObserverExample ${SOURCE_FILES})
 include(FetchContent)
 FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/release-1.10.0.tar.gz
+    URL https://github.com/google/googletest/archive/release-1.12.1.tar.gz
 )
 FetchContent_MakeAvailable(googletest)
 
@@ -36,6 +36,9 @@ add_executable(RunTests tests.cpp)
 
 # Линковка библиотек с тестовым исполняемым файлом
 target_link_libraries(RunTests PRIVATE gtest gtest_main Person NameObserver AddressObserver)
+
+# Отключение предупреждений для GoogleTest
+target_compile_options(gtest PRIVATE -Wno-maybe-uninitialized)
 
 # Включение тестов
 enable_testing()
