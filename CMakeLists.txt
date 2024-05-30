@@ -14,6 +14,7 @@ set(SOURCES
     Observer.h
     Person.cpp
     Person.h
+    tests.cpp
 )
 
 add_executable(ClassicObserverExample ${SOURCES})
