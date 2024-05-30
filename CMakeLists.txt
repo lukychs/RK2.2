@@ -31,7 +31,7 @@ set(TEST_FILES
 )
 
 add_executable(RunTests ${TEST_FILES})
-target_link_libraries(RunTests gtest gtest_main)
+target_link_libraries(RunTests PRIVATE gtest gtest_main)
 target_link_libraries(RunTests PRIVATE ClassicObserverExample)
 
 # Включение тестов
