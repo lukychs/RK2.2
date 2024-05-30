@@ -30,7 +30,7 @@ FetchContent_Declare(
     URL https://github.com/google/googletest/archive/release-1.10.0.tar.gz
 )
 FetchContent_MakeAvailable(googletest)
-add_executanbles(RunTests ${TEST_FILES})
+add_executable(RunTests ${TEST_FILES})
 target_link_libraries(RunTests gtest gtest_main)
 target_link_libraries(RunTests ClassicObserverExample)
 
