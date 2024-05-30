@@ -14,7 +14,6 @@ set(SOURCE_FILES
     Observer.h
     Person.cpp
     Person.h
-    tests.cpp
 )
 
 add_executable(ClassicObserverExample ${SOURCE_FILES})
@@ -23,16 +22,21 @@ add_executable(ClassicObserverExample ${SOURCE_FILES})
 include(FetchContent)
 FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/release-1.10.0.tar.gz
+    URL https://github.com/google/googletest/archive/release-1.11.0.zip
 )
 FetchContent_MakeAvailable(googletest)
+
+# Тестовые файлы
 set(TEST_FILES
     tests.cpp
 )
 
+# Добавление тестового исполняемого файла
 add_executable(RunTests ${TEST_FILES})
+
+# Линковка Google Test и вашего кода для тестов
 target_link_libraries(RunTests PRIVATE gtest gtest_main)
-target_link_libraries(RunTests PRIVATE ClassicObserverExample)
+target_link_libraries(RunTests PRIVATE Person NameObserver AddressObserver)
 
 # Включение тестов
 enable_testing()
