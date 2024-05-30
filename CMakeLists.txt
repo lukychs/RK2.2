@@ -21,21 +21,17 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Отключение обработки предупреждений как ошибок для Google Test
-set_target_properties(gtest PROPERTIES COMPILE_FLAGS "-w")
-set_target_properties(gtest_main PROPERTIES COMPILE_FLAGS "-w")
+# Добавление библиотеки Person
+add_library(Person STATIC Person.cpp)
 
-# Тестовые файлы
-set(TEST_FILES
-    tests.cpp
-)
+# Добавление библиотеки NameObserver
+add_library(NameObserver STATIC NameObserver.cpp)
 
-# Добавление тестового исполняемого файла
-add_executable(RunTests ${TEST_FILES})
+# Добавление библиотеки AddressObserver
+add_library(AddressObserver STATIC AddressObserver.cpp)
 
-# Линковка Google Test и вашего кода для тестов
-target_link_libraries(RunTests PRIVATE gtest gtest_main)
-target_link_libraries(RunTests PRIVATE Person NameObserver AddressObserver)
+# Линковка библиотек с тестовым исполняемым файлом
+target_link_libraries(RunTests PRIVATE gtest gtest_main Person NameObserver AddressObserver)
 
 # Включение тестов
 enable_testing()
