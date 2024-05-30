@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y cmake
     - name: Set up CMake
-      uses: lukka/get-cmake@v2.3.0
+      uses: lukka/get-cmake@v2.316.1
     - name: Configure
       run: cmake .
     - name: Build
