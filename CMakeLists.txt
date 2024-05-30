@@ -4,7 +4,7 @@ project(ClassicObserverExample)
 set(CMAKE_CXX_STANDARD 17)
 
 # Укажите все исходные файлы
-set(SOURCES
+set(SOURCE_FILES
     AddressObserver.cpp
     AddressObserver.h
     G25_Classic_Observer.cpp
@@ -17,11 +17,7 @@ set(SOURCES
     tests.cpp
 )
 
-add_executable(ClassicObserverExample ${SOURCES})
-
-set(TEST_FILES
-    tests.cpp
-)
+add_executable(ClassicObserverExample ${SOURCE_FILES})
 
 # GoogleTest configuration
 include(FetchContent)
@@ -30,9 +26,13 @@ FetchContent_Declare(
     URL https://github.com/google/googletest/archive/release-1.10.0.tar.gz
 )
 FetchContent_MakeAvailable(googletest)
+set(TEST_FILES
+    tests.cpp
+)
+
 add_executable(RunTests ${TEST_FILES})
 target_link_libraries(RunTests gtest gtest_main)
-target_link_libraries(RunTests ClassicObserverExample)
+target_link_libraries(RunTests PRIVATE ClassicObserverExample)
 
 # Включение тестов
 enable_testing()
