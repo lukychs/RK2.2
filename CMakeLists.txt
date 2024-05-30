@@ -21,6 +21,10 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+# Отключение обработки предупреждений как ошибок для Google Test
+set_target_properties(gtest PROPERTIES COMPILE_FLAGS "-w")
+set_target_properties(gtest_main PROPERTIES COMPILE_FLAGS "-w")
+
 # Тестовые файлы
 set(TEST_FILES
     tests.cpp
