@@ -3,12 +3,6 @@ project(ClassicObserverExample)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Установка опции компиляции -Wno-maybe-uninitialized для файла gtest-death-test.cc
-set_source_files_properties(
-    _deps/googletest-src/googletest/src/gtest-death-test.cc
-    PROPERTIES COMPILE_FLAGS -Wno-maybe-uninitialized
-)
-
 # Укажите все исходные файлы
 set(SOURCE_FILES
     AddressObserver.cpp
@@ -41,6 +35,12 @@ add_executable(RunTests tests.cpp)
 
 # Линковка библиотек с тестовым исполняемым файлом
 target_link_libraries(RunTests PRIVATE gtest gtest_main Person NameObserver AddressObserver)
+
+# Установка опции компиляции -Wno-maybe-uninitialized для файла gtest-death-test.cc
+set_source_files_properties(
+    _deps/googletest-src/googletest/src/gtest-death-test.cc
+    PROPERTIES COMPILE_FLAGS -Wno-maybe-uninitialized
+)
 
 # Включение тестов
 enable_testing()
