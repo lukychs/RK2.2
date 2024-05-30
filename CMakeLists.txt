@@ -6,14 +6,9 @@ set(CMAKE_CXX_STANDARD 17)
 # Укажите все исходные файлы
 set(SOURCE_FILES
     AddressObserver.cpp
-    AddressObserver.h
-    G25_Classic_Observer.cpp
     Main.cpp
     NameObserver.cpp
-    NameObserver.h
-    Observer.h
     Person.cpp
-    Person.h
 )
 
 add_executable(ClassicObserverExample ${SOURCE_FILES})
@@ -22,7 +17,7 @@ add_executable(ClassicObserverExample ${SOURCE_FILES})
 include(FetchContent)
 FetchContent_Declare(
     googletest
-    URL https://github.com/google/googletest/archive/release-1.11.0.zip
+    URL https://github.com/google/googletest/archive/release-1.10.0.tar.gz
 )
 FetchContent_MakeAvailable(googletest)
 
