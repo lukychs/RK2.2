@@ -30,6 +30,6 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # Добавьте тесты для каждого примера
-add_executable(runTests test.cpp)
+add_executable(runTests tests.cpp)
 target_link_libraries(runTests gtest gtest_main)
 add_test(NAME runTests COMMAND runTests)
