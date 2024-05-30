@@ -1,37 +1,32 @@
 #include "gtest/gtest.h"
 #include "Person.h"
-#include "AddressObserver.h"
 #include "NameObserver.h"
+#include "AddressObserver.h"
 
-// Тест регистрации и уведомления об изменении адреса
-TEST(PersonTest, AddressChangeNotification) {
-    Person homer("Homer", "Simpson");
-    AddressObserver addressObserver;
-    homer.attach(&addressObserver);
-    homer.address("123 Oak Street, Springfield");
-    EXPECT_TRUE(true);
+TEST(PersonTest, ForenameChange) {
+    Person person("John", "Doe");
+    NameObserver observer;
+    person.attach(&observer);
+
+    person.forename("Jane");
+    EXPECT_EQ(person.forename(), "Jane");
 }
 
-// Тест игнорирования изменений имени
-TEST(PersonTest, IgnoreNameChanges) {
-    Person homer("Homer", "Simpson");
-    NameObserver nameObserver;
-    homer.attach(&nameObserver);
-    homer.forename("Homer Jay");
-    EXPECT_TRUE(true);
+TEST(PersonTest, SurnameChange) {
+    Person person("John", "Doe");
+    NameObserver observer;
+    person.attach(&observer);
+
+    person.surname("Smith");
+    EXPECT_EQ(person.surname(), "Smith");
 }
 
-// Тест открепления наблюдателя
-TEST(PersonTest, DetachObserver) {
-    Person homer("Homer", "Simpson");
-    AddressObserver addressObserver;
-    homer.attach(&addressObserver);
-    homer.detach(&addressObserver);
-    homer.address("123 Oak Street, Springfield");
-    EXPECT_TRUE(true);
+TEST(PersonTest, AddressChange) {
+    Person person("John", "Doe");
+    AddressObserver observer;
+    person.attach(&observer);
+
+    person.address("123 Main St");
+    EXPECT_EQ(person.address(), "123 Main St");
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
