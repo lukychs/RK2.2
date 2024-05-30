@@ -1,26 +1,22 @@
-name: Build and Test
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
+name: GitHub Actions
+on: [push]
 jobs:
-  build:
+  Build-Project-Linux:
+    name: Build Project on Linux
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y cmake
-    - name: Set up CMake
-      uses: lukka/get-cmake@v2.316.1
-    - name: Configure
-      run: cmake .
-    - name: Build
-      run: cmake --build .
-    - name: Run tests
-      run: ctest --output-on-failure
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install CMake
+        run: sudo apt-get install -y cmake
+      - name: Configure and Build
+        run: |
+          cmake -H. -B_build
+          cmake --build _build
+      - name: Run tests
+        run: ./_build/tests
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-files
+          path: _build/tests
