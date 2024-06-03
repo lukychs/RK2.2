@@ -4,7 +4,7 @@
 #include "AddressObserver.h"
 
 TEST(PersonTest, ForenameChange) {
-    Person person("John", "Doe");
+    Person person("Johnnnnnnnnn", "Doe");
     NameObserver nameObserver;
     person.attach(&nameObserver);
 
