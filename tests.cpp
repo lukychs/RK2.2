@@ -4,7 +4,7 @@
 #include "AddressObserver.h"
 
 TEST(PersonTest, ForenameChange) {
-    Person person("John", "Doe");
+    Person person("Johnnn", "Doe");
     NameObserver nameObserver;
     person.attach(&nameObserver);
 
@@ -39,3 +39,8 @@ TEST(PersonTest, DetachObserver) {
     person.address("456 Elm St");
     EXPECT_EQ(person.address(), "456 Elm St"); // Изменение все еще работает
 }
+
+
+
+
+
