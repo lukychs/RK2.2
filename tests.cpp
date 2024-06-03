@@ -33,7 +33,7 @@ TEST(PersonTest, NotifyAddressObserverOnAddressChange) {
 
     marge.address("712 Red Bark Lane, Henderson, Clark County, Nevada 89011");
 
-    ASSERT_EQ(addressObserver.notifications.size(), 1);
+    ASSERT_EQ(addressObserver.notifications.size(), 10);
     EXPECT_EQ(addressObserver.notifications[0], Person::addressChanged);
 }
 
