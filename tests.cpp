@@ -49,7 +49,7 @@ TEST(PersonTest, NotifyMultipleObserversOnAddressChange) {
     ASSERT_EQ(addressObserver1.notifications.size(), 1);
     EXPECT_EQ(addressObserver1.notifications[0], Person::addressChanged);
 
-    ASSERT_EQ(addressObserver2.notifications.size(), 10);
+    ASSERT_EQ(addressObserver2.notifications.size(), 1);
     EXPECT_EQ(addressObserver2.notifications[0], Person::addressChanged);
 }
 
