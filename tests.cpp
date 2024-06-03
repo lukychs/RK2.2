@@ -1,3 +1,4 @@
+#include <gtest/gtest.h>
 #include "Person.h"
 #include "NameObserver.h"
 #include "AddressObserver.h"
@@ -76,6 +77,4 @@ TEST(PersonTest, AttachAndDetachObservers) {
     ASSERT_TRUE(person.detach(&nameObserver));
     ASSERT_TRUE(person.detach(&addressObserver));
 }
-
-
 
