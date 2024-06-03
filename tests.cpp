@@ -33,7 +33,7 @@ TEST(PersonTest, NotifyAddressObserverOnAddressChange) {
 
     marge.address("712 Red Bark Lane, Henderson, Clark County, Nevada 89011");
 
-    ASSERT_EQ(addressObserver.notifications.size(), 10);
+    ASSERT_EQ(addressObserver.notifications.size(), 1);
     EXPECT_EQ(addressObserver.notifications[0], Person::addressChanged);
 }
 
@@ -47,7 +47,7 @@ TEST(PersonTest, NotifyMultipleObserversOnAddressChange) {
 
     monty.address("Springfield Nuclear Power Plant");
 
-    ASSERT_EQ(addressObserver1.notifications.size(), 1);
+    ASSERT_EQ(addressObserver1.notifications.size(), 10);
     EXPECT_EQ(addressObserver1.notifications[0], Person::addressChanged);
 
     ASSERT_EQ(addressObserver2.notifications.size(), 1);
