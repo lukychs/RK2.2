@@ -34,7 +34,7 @@ add_library(AddressObserver STATIC AddressObserver.cpp)
 # Добавление исполняемого файла для тестов
 add_executable(RunTests tests.cpp)
 
-add_executable(mt Main.cpp)
+add_executable(mt Main.cpp Person.cpp NameObserver.cpp G25_Classic_Observer.cpp AddressObserver.cpp)
 
 # Линковка библиотек с тестовым исполняемым файлом
 target_link_libraries(RunTests PRIVATE gtest gtest_main Person NameObserver AddressObserver)
