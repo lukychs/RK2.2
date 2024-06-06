@@ -23,7 +23,7 @@ jobs:
       run: cmake -B build && cmake --build build --config Release
 
     - name: Run tests
-      run: ./build/tests
+      run: ./build/RunTests
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
