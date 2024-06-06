@@ -22,25 +22,21 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Добавление библиотеки Person
-add_library(Person STATIC Person.cpp)
+# Добавление общей библиотеки ClassicObserverLib
+add_library(ClassicObserverLib STATIC
+    Person.cpp
+    NameObserver.cpp
+    AddressObserver.cpp
+)
 
-# Добавление библиотеки NameObserver
-add_library(NameObserver STATIC NameObserver.cpp)
-
-# Добавление библиотеки AddressObserver
-add_library(AddressObserver STATIC AddressObserver.cpp)
-
-# Линковка библиотек с основным исполняемым файлом
-target_link_libraries(ClassicObserverExample PRIVATE Person NameObserver AddressObserver)
+# Линковка общей библиотеки с основным исполняемым файлом
+target_link_libraries(ClassicObserverExample PRIVATE ClassicObserverLib)
 
 # Добавление исполняемого файла для тестов
 add_executable(RunTests tests.cpp)
 
-add_executable(mt Main.cpp Person.cpp NameObserver.cpp AddressObserver.cpp)
-
-# Линковка библиотек с тестовым исполняемым файлом
-target_link_libraries(RunTests PRIVATE gtest gtest_main Person NameObserver AddressObserver)
+# Линковка общей библиотеки с тестовым исполняемым файлом
+target_link_libraries(RunTests PRIVATE gtest gtest_main ClassicObserverLib)
 
 # Отключение предупреждений для GoogleTest
 target_compile_options(gtest PRIVATE -Wno-maybe-uninitialized)
@@ -48,3 +44,7 @@ target_compile_options(gtest PRIVATE -Wno-maybe-uninitialized)
 # Включение тестов
 enable_testing()
 add_test(AllTests RunTests)
+
+# Добавление исполняемого файла mt для Main.cpp и всех библиотек
+add_executable(mt Main.cpp)
+target_link_libraries(mt PRIVATE ClassicObserverLib)
