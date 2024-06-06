@@ -3,10 +3,10 @@ name: Build and Test
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -16,14 +16,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y gcc g++ cmake
-
-    - name: Configure
-      run: cmake -B build
+    - name: Install CMake
+      run: sudo apt-get install -y cmake
 
     - name: Build
-      run: cmake --build build --config Release
+      run: cmake -B build && cmake --build build --config Release
 
     - name: Run tests
       run: ./build/tests
@@ -32,4 +29,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: built-files
-        path: build
+        path: build/example 
