@@ -25,7 +25,7 @@ jobs:
           cmake --build _build
 
       - name: Run tests
-        run: ctest --test-dir _build --output-on-failure
+        run: ctest --test-dir _build --output-on-failure --verbose
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
