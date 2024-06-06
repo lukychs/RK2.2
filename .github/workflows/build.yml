@@ -3,36 +3,33 @@ name: Build and Test
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
-      
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get install -y cmake g++
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y gcc g++ cmake
 
-      - name: Configure and Build
-        run: |
-          cmake -H. -B_build
-          cmake --build _build
+    - name: Configure
+      run: cmake -B build
 
-      - name: Run tests
-        run: |
-          ctest --test-dir _build --output-on-failure --verbose
-          echo "Building main.cpp..."
-          g++ _build/../Main.cpp -o _build/main
+    - name: Build
+      run: cmake --build build --config Release
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: built-files
-          path: _build
+    - name: Run tests
+      run: ./build/tests
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: built-files
+        path: build
