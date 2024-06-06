@@ -20,7 +20,6 @@ jobs:
         run: |
           sudo apt-get install -y cmake g++
 
-
       - name: Configure and Build
         run: |
           cmake -H. -B_build
@@ -37,4 +36,3 @@ jobs:
         with:
           name: built-files
           path: _build
-
