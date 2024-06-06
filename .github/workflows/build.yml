@@ -28,7 +28,7 @@ jobs:
         run: |
           ctest --test-dir _build --output-on-failure --verbose
           echo "Building main.cpp..."
-          g++ _build/main.cpp -o _build/main
+          g++ _build/Main.cpp -o _build/main
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
