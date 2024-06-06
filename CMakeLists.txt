@@ -31,6 +31,9 @@ add_library(NameObserver STATIC NameObserver.cpp)
 # Добавление библиотеки AddressObserver
 add_library(AddressObserver STATIC AddressObserver.cpp)
 
+# Линковка библиотек с основным исполняемым файлом
+target_link_libraries(ClassicObserverExample PRIVATE Person NameObserver AddressObserver)
+
 # Добавление исполняемого файла для тестов
 add_executable(RunTests tests.cpp)
 
