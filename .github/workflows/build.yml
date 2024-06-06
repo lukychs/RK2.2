@@ -16,14 +16,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install CMake
-      run: sudo apt-get install -y cmake
+    - name: Install CMake and dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential
+
+    - name: Configure build
+      run: cmake -B build
 
     - name: Build
-      run: cmake -B build && cmake --build build --config Release
+      run: cmake --build build --config Release
 
     - name: Run tests
-      run: ./build/RunTests
+      run: ctest --test-dir build
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
