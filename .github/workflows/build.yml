@@ -28,7 +28,9 @@ jobs:
         run: ctest --test-dir _build --output-on-failure --verbose
 
       - name: Run main
-        run: ./build/mt
+        run: |
+            cd build
+            ./mt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
